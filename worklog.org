@@ -1,0 +1,477 @@
+* 20200518 
+** add more variables.json 
+
+#+begin_src shell :results output verbatim 
+  src=acs1 
+  year=2006
+  tabletype=profile
+  for year in {2006..2020}; do;
+  curl --location --request GET "https://api.census.gov/data/${year}/acs/${src}/${tabletype}/variables.json" \
+  |jq '.variables|=(to_entries|sort_by(.key)|from_entries)' > censusdata/variables2/${src}_${year}_${tabletype}_variables.json 
+  echo ${PWD}/censusdata/variables2/${src}_${year}_${tabletype}_variables.json 
+  done 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/Users/shgu/censusdata/censusdata/variables2/acs1_2006_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2007_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2008_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2009_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2010_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2011_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2012_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2013_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2014_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2015_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2016_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2017_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2018_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2019_profile_variables.json
+/Users/shgu/censusdata/censusdata/variables2/acs1_2020_profile_variables.json
+#+end_example
+
+
+#+begin_src shell :results output verbatim
+  src=acs1 
+  year=2006
+  tabletype=profile
+  for year in {2006..2020}; do;
+  cat ${PWD}/censusdata/variables2/${src}_${year}_${tabletype}_variables.json |jq '.variables'|jq 'to_entries[]|select(.value.label|contains("Median family income"))'
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+{
+  "key": "DP03_0085E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2006 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2006",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0085EA,DP03_0085M,DP03_0085MA"
+  }
+}
+{
+  "key": "DP03_0087E",
+  "value": {
+    "label": "Number!!Estimate!!INCOME AND BENEFITS (IN 2007 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2007",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087EA,DP03_0087M,DP03_0087MA"
+  }
+}
+{
+  "key": "DP03_0087PE",
+  "value": {
+    "label": "Percent!!Estimate!!INCOME AND BENEFITS (IN 2007 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2007",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087PEA,DP03_0087PM,DP03_0087PMA"
+  }
+}
+{
+  "key": "DP03_0087E",
+  "value": {
+    "label": "Number!!Estimate!!INCOME AND BENEFITS (IN 2008 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2008",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087EA,DP03_0087M,DP03_0087MA"
+  }
+}
+{
+  "key": "DP03_0087PE",
+  "value": {
+    "label": "Percent!!Estimate!!INCOME AND BENEFITS (IN 2008 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2008",
+    "predicateType": "string",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087PEA,DP03_0087PM,DP03_0087PMA"
+  }
+}
+{
+  "key": "DP03_0087E",
+  "value": {
+    "label": "Number!!Estimate!!INCOME AND BENEFITS (IN 2009 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2009",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087EA,DP03_0087M,DP03_0087MA"
+  }
+}
+{
+  "key": "DP03_0087PE",
+  "value": {
+    "label": "Percent!!Estimate!!INCOME AND BENEFITS (IN 2009 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "Selected Economic Characteristics:  2009",
+    "predicateType": "string",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0087PEA,DP03_0087PM,DP03_0087PMA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2010 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086M,DP03_0086MA,DP03_0086EA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2010 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PM,DP03_0086PMA,DP03_0086PEA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2011 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086M,DP03_0086MA,DP03_0086EA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2011 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PM,DP03_0086PMA,DP03_0086PEA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2012 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086EA,DP03_0086M,DP03_0086MA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2012 INFLATION-ADJUSTED DOLLARS)!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PEA,DP03_0086PM,DP03_0086PMA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2013 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086EA,DP03_0086M,DP03_0086MA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2013 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PEA,DP03_0086PM,DP03_0086PMA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2014 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086EA,DP03_0086M,DP03_0086MA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2014 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PEA,DP03_0086PM,DP03_0086PMA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2015 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086M,DP03_0086MA,DP03_0086EA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2015 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PM,DP03_0086PMA,DP03_0086PEA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086M,DP03_0086EA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2016 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PM,DP03_0086PEA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2017 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086M,DP03_0086MA,DP03_0086EA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2017 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PM,DP03_0086PMA,DP03_0086PEA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2018 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086EA,DP03_0086M,DP03_0086MA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent Estimate!!INCOME AND BENEFITS (IN 2018 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PEA,DP03_0086PM,DP03_0086PMA"
+  }
+}
+{
+  "key": "DP03_0086E",
+  "value": {
+    "label": "Estimate!!INCOME AND BENEFITS (IN 2019 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086EA,DP03_0086M,DP03_0086MA"
+  }
+}
+{
+  "key": "DP03_0086PE",
+  "value": {
+    "label": "Percent!!INCOME AND BENEFITS (IN 2019 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)",
+    "concept": "SELECTED ECONOMIC CHARACTERISTICS",
+    "predicateType": "int",
+    "group": "DP03",
+    "limit": 0,
+    "attributes": "DP03_0086PEA,DP03_0086PM,DP03_0086PMA"
+  }
+}
+#+end_example
+
+#+begin_src shell :results output verbatim
+  src=acs1 
+  year=2006
+  tabletype=profile
+  for year in {2006..2020}; do;
+  cat ${PWD}/censusdata/variables2/${src}_${year}_${tabletype}_variables.json |jq '.variables.DP05_0004E'
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+{
+  "label": "Estimate!!Total population!!SEX AND AGE!!Under 5 years",
+  "concept": "ACS Demographic and Housing Estimates:  2006",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004M,DP05_0004MA,DP05_0004EA"
+}
+{
+  "label": "Number!!Estimate!!SEX AND AGE!!Total population!!Under 5 years",
+  "concept": "ACS Demographic and Housing Estimates:  2007",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Number!!Estimate!!SEX AND AGE!!Total population!!Under 5 years",
+  "concept": "ACS Demographic and Housing Estimates:  2008",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Number!!Estimate!!SEX AND AGE!!Total population!!Under 5 years",
+  "concept": "ACS Demographic and Housing Estimates:  2009",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004M,DP05_0004MA,DP05_0004EA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Under 5 years",
+  "predicateType": "int",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004M,DP05_0004EA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Total population!!Sex ratio (males per 100 females)",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "float",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Total population!!Sex ratio (males per 100 females)",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "float",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+{
+  "label": "Estimate!!SEX AND AGE!!Total population!!Sex ratio (males per 100 females)",
+  "concept": "ACS DEMOGRAPHIC AND HOUSING ESTIMATES",
+  "predicateType": "float",
+  "group": "DP05",
+  "limit": 0,
+  "attributes": "DP05_0004EA,DP05_0004M,DP05_0004MA"
+}
+#+end_example
+
+** try the new search 
+#+begin_src shell :results output verbatim  
+pipenv --venv 
+#+end_src
+
+#+RESULTS:
+: /Users/shgu/.local/share/virtualenvs/censusdata-tCfeECZH
+
+
+#+begin_src python :results output verbatim
+import censusdata 
+rv = censusdata.search('acs1',2007,'label','Median family income','profile')
+print(rv)
+#+end_src
+
+#+RESULTS:
+: [('DP03_0087E', 'Selected Economic Characteristics:  2007', 'Number!!Estimate!!INCOME AND BENEFITS (IN 2007 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)'), ('DP03_0087PE', 'Selected Economic Characteristics:  2007', 'Percent!!Estimate!!INCOME AND BENEFITS (IN 2007 INFLATION-ADJUSTED DOLLARS)!!Families!!Median family income (dollars)')]
